@@ -19,7 +19,7 @@ logging.basicConfig(filename='received_traps.log', filemode='w', format='%(ascti
 logging.info("Agent is listening SNMP Trap on "+trapAgentAddress+" , Port : " +str(snmpTrapPort))
 logging.info('--------------------------------------------------------------------------')
 
-print("Agent is listening SNMP Trap on "+trapAgentAddress+" , Port : " +str(snmpTrapPort))
+print("Agent is listening SNMP Trap on "+trapAgentAddress+" , Port : " + str(snmpTrapPort))
 
 config.addTransport(
     snmpEngine,
@@ -52,8 +52,14 @@ def cbFun(snmpEngine, stateReference, contextEngineId, contextName, varBinds, cb
     print("Received new Trap message")
     logging.info("Received new Trap message")
     for name, val in varBinds:
-        logging.info('%s = %s' % (name.prettyPrint(), val.prettyPrint()))
-        print('%s = %s' % (name.prettyPrint(), val.prettyPrint()))
+        if name.prettyPrint() == "1.3.6.1.4.1.30960.2.2.1.10.0":
+            byte_array = bytearray.fromhex(val.prettyPrint()[2:])
+            logging.info('%s = %s' % (name.prettyPrint(), byte_array.decode()))
+            print('%s = %s' % (name.prettyPrint(), byte_array.decode()))
+        else:
+            logging.info('%s = %s' % (name.prettyPrint(), val.prettyPrint()))
+            print('%s = %s' % (name.prettyPrint(), val.prettyPrint()))
+
         logging.info("==== End of Incoming Trap ====")
 
 

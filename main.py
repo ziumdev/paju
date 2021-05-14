@@ -2,8 +2,8 @@ import snmpFunc
 import trapReceiver
 from multiprocessing import Process
 
-loopProc = Process(target=snmpFunc.loop())
-receiverPro = Process(target=trapReceiver.run())
+loopProc = Process(target=snmpFunc.loop)
+receiverPro = Process(target=trapReceiver.run)
 
 if __name__ == '__main__':
     loopProc.start()
