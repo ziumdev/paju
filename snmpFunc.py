@@ -40,5 +40,6 @@ def getData(oids):
 
 def loop():
     while True:
-        getData(snmpConfig.oidList)
+        for list in snmpConfig.oidList:
+            getData(list)
         time.sleep(snmpConfig.intveral)
