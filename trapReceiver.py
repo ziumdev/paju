@@ -27,13 +27,13 @@ config.addTransport(
     udp.UdpTransport().openServerMode((trapAgentAddress, snmpTrapPort))
 )
 
-config.addV3User(
-    snmpEngine, snmpConfig.userInfo['username'],
-    config.usmHMACMD5AuthProtocol, snmpConfig.userInfo['authProtocol'],
-    config.usmDESPrivProtocol,  snmpConfig.userInfo['privProtocol'],
-    securityEngineId=v2c.OctetString(value=snmpConfig.userInfo['OctetValue'])
-)
-# config.addV1System(snmpEngine, 'my-area', 'test') SNMP v3로 날릴 때는 이 부분을 주석처리하고, SNMP v2는 주석을 개방하고 v3 유저정보를 삭제함
+# config.addV3User(
+#     snmpEngine, snmpConfig.userInfo['username'],
+#     config.usmHMACMD5AuthProtocol, snmpConfig.userInfo['authProtocol'],
+#     config.usmDESPrivProtocol,  snmpConfig.userInfo['privProtocol'],
+#     securityEngineId=v2c.OctetString(value=snmpConfig.userInfo['OctetValue'])
+# )
+config.addV1System(snmpEngine, 'my-area', 'public') # SNMP v3로 날릴 때는 이 부분을 주석처리하고, SNMP v2는 주석을 개방하고 v3 유저정보를 삭제함
 
 
 def changeDict2Bytes(msg):
@@ -57,12 +57,13 @@ def cbFun(snmpEngine, stateReference, contextEngineId, contextName, varBinds, cb
         logging.info("==== End of Incoming Trap ====")
 
 
-ntfrcv.NotificationReceiver(snmpEngine, cbFun)
-snmpEngine.transportDispatcher.jobStarted(1)
+def run():
+    ntfrcv.NotificationReceiver(snmpEngine, cbFun)
+    snmpEngine.transportDispatcher.jobStarted(1)
 
-try:
-    snmpEngine.transportDispatcher.runDispatcher()
-except Exception as e:
-    snmpEngine.transportDispatcher.closeDispatcher()
-    print(e)
-    raise
+    try:
+        snmpEngine.transportDispatcher.runDispatcher()
+    except Exception as e:
+        snmpEngine.transportDispatcher.closeDispatcher()
+        print(e)
+        raise
