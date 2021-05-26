@@ -20,7 +20,7 @@ def getData(oids):
     }
 
     for oid in oids:
-        iterator = getCmd(SnmpEngine(), CommunityData('test'), UdpTransportTarget((snmpConfig.snmpHost, snmpConfig.snmpPort)), ContextData(),
+        iterator = getCmd(SnmpEngine(), CommunityData('public'), UdpTransportTarget((snmpConfig.snmpHost, snmpConfig.snmpPort)), ContextData(),
                           ObjectType(ObjectIdentity(oid)))
         errorIndication, errorStatus, errorIndex, varBinds = next(iterator)
         if errorIndication:  # SNMP engine errors

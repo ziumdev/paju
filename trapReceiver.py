@@ -1,10 +1,9 @@
 from pysnmp.entity import engine, config
 from pysnmp.carrier.asyncore.dgram import udp
-from pysnmp.proto.api import v2c
 from pysnmp.entity.rfc3413 import ntfrcv
 from Config import mrsConfig, snmpConfig
 import logging
-import socket, json
+import socket, json, datetime, struct
 
 mrsHost = mrsConfig.mrsHost
 mrsPort = mrsConfig.mrsPort
@@ -48,19 +47,63 @@ def sendMsg(msg):
     sock.close()
 
 
+# 시간에 0추가 함수 case1
+def addZero(number):
+    result = ''
+    if 0 < number < 10:
+        result += '0'+str(number)
+        return result
+    else:
+        return str(number)
+
+
+# 시간에 0추가 함수 case2
+def addZeroMs(number):
+    num = int(number / 1000)
+    if str(num).__len__() < 3:
+        result = str(num).zfill(3)
+        return result
+    else:
+        return num
+
+
 def cbFun(snmpEngine, stateReference, contextEngineId, contextName, varBinds, cbCtx):
     print("Received new Trap message")
     logging.info("Received new Trap message")
+
     for name, val in varBinds:
         if name.prettyPrint() == "1.3.6.1.4.1.30960.2.2.1.10.0":
             byte_array = bytearray.fromhex(val.prettyPrint()[2:])
             logging.info('%s = %s' % (name.prettyPrint(), byte_array.decode()))
             print('%s = %s' % (name.prettyPrint(), byte_array.decode()))
+            bodyJson = mrsConfig.bodyJson
+            # bodyJson['StatEvet']['outbPosNm'] = 'scold'  #
+            # bodyJson['StatEvet']['statEvetGdCd'] = '가스탐지기A'
+            # bodyJson['StatEvet']['statEvetClrDtm'] = currentDateTimeString
+            sendToErs(bodyJson)
         else:
             logging.info('%s = %s' % (name.prettyPrint(), val.prettyPrint()))
             print('%s = %s' % (name.prettyPrint(), val.prettyPrint()))
 
         logging.info("==== End of Incoming Trap ====")
+
+
+def sendToErs(jsonData):
+    today = datetime.datetime.now().today()
+    currentDateTimeString = str(today.year) + str(addZero(today.month)) + str(addZero(today.day)) + str(
+        addZero(today.hour)) + str(addZero(today.minute)) + str(addZero(today.second)) + str(addZeroMs(today.microsecond))
+    headerA = mrsConfig.mrsClientCd + '     ' + mrsConfig.mrsSiteCd + 'A1' + '      ' + mrsConfig.sendSystemCd + " "
+    headerB = mrsConfig.headerTypeCd + mrsConfig.traceId + currentDateTimeString
+    # jsonData = mrsConfig.bodyJson
+    # jsonData['StatEvet']['outbPosNm'] = 'scold'
+    # jsonData['StatEvet']['statEvetGdCd'] = '가스탐지기A'
+    # jsonData['StatEvet']['statEvetClrDtm'] = currentDateTimeString
+
+    bodyByte = json.dumps(jsonData).encode('utf-8') # Json 값을 byte로 변경
+    # bodyByte = marshal.dumps(bodyJson)
+    bodyLength = struct.pack('<I', bodyByte.__len__())
+    header = headerA.encode('utf-8').__add__(bodyLength).__add__(headerB.encode('utf-8'))
+    sendMsg(header+bodyByte)
 
 
 def run():
