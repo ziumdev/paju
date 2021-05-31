@@ -90,8 +90,7 @@ def cbFun(snmpEngine, stateReference, contextEngineId, contextName, varBinds, cb
 
 def sendToErs(jsonData):
     today = datetime.datetime.now().today()
-    currentDateTimeString = str(today.year) + str(addZero(today.month)) + str(addZero(today.day)) + str(
-        addZero(today.hour)) + str(addZero(today.minute)) + str(addZero(today.second)) + str(addZeroMs(today.microsecond))
+    currentDateTimeString = datetime.datetime.today().strftime('%Y%m%d%H%M%S%f')[:-3]
     headerA = mrsConfig.mrsClientCd + '     ' + mrsConfig.mrsSiteCd + 'A1' + '      ' + mrsConfig.sendSystemCd + " "
     headerB = mrsConfig.headerTypeCd + mrsConfig.traceId + currentDateTimeString
     # jsonData = mrsConfig.bodyJson

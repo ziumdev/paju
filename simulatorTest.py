@@ -1,12 +1,12 @@
 from Config import mrsConfig
-import datetime, struct, json, socket, marshal
+import datetime, struct, json, socket
 import numpy
 
 # mrsHost = mrsConfig.mrsHost
 # mrsPort = mrsConfig.mrsPort
 
 mrsHost = 'localhost'
-mrsPort = 8888
+mrsPort = 9101
 
 
 def sendMsg(msg):
@@ -37,39 +37,30 @@ def addZeroMs(number):
 
 
 today = datetime.datetime.now().today()
-currentDateTimeString = str(today.year) + str(addZero(today.month)) + str(addZero(today.day)) + str(
-        addZero(today.hour)) + str(addZero(today.minute)) + str(addZero(today.second)) + str(addZeroMs(today.microsecond))
+currentDateTimeString = datetime.datetime.today().strftime('%Y%m%d%H%M%S%f')[:-3]
 headerA = mrsConfig.mrsClientCd + '     ' + mrsConfig.mrsSiteCd+'A1' + '      ' + mrsConfig.sendSystemCd + " "
 headerB = mrsConfig.headerTypeCd + mrsConfig.traceId + currentDateTimeString
-bodyJson = {
-    "StatEvet": {
-        "statEvetGdCd": "",
-        "outbPosNm": "",
-        "statEvetNm": "",
-        "statEvetClrDtm": "",
-        "statEvetActnRslt": "",
-        "statEvetCntn": "",
-        "outbScopRads": "",
-        "outbPos": "",
-        "statEvetOutbDtm": "20210511164324439",
-        "statEvetActnCntn": " ['sleep', 'comma', 'flag']",
-        "procSt": "",
-        "uSvcOutbId": "S_ej9ncQEz4cdaGj3MKfxRQU",
-        "statEvetItem": "",
-        "statEvetActnMn": "",
-        "cpxRelEvetOutbSeqnCnt": '',
-        "cpxRelEvetOutbSeqn": "",
-        "outbPosCnt": "",
-        "statEvetItemCnt": "",
-        "statEvetActnDtm": "",
-        "statEvetId": "",
-        "outbMainGb": ""
-        }
-    }
 
-bodyJson['StatEvet']['outbPosNm'] = 'scold'
-bodyJson['StatEvet']['statEvetGdCd'] = '가스탐지기A'
-bodyJson['StatEvet']['statEvetClrDtm'] = currentDateTimeString
+bodyJson = {
+  "StatEvet":{
+    "uSvcOutbId" : "GST-ZIUM-000TAG002",
+    "statEvetId" : "GST-ZIUM-000TAG002E01",
+    "statEvetNm" : "영상장치",
+    "statEvetGdCd" : "99",    # trap의 경보발생레벨의 값에 0를 붙일것.
+    "procSt" : "2", # 1이 아닌 다른 메시지로..
+    "outbPosCnt" : 0,
+    "outbPosNm" : "취사장 옆 자재 창고",
+    "statEvetCntn" : "일산화탄소 가스 농도 초과",
+    "statEvetOutbDtm" : currentDateTimeString,
+    "statEvetItemCnt" : 1,
+    "statEvetItem" : [{"key": "DATA",  "value": "co"}],
+    "cpxRelEvetOutbSeqnCnt" : 0
+  }
+}
+
+# bodyJson['StatEvet']['outbPosNm'] = 'scold'
+# bodyJson['StatEvet']['statEvetGdCd'] = '가스탐지기A'
+# bodyJson['StatEvet']['statEvetClrDtm'] = currentDateTimeString
 
 # bodyByte = marshal.dumps(bodyJson)
 bodyByte = json.dumps(bodyJson).encode('utf-8')  # Json 값을 byte로 변경
@@ -94,3 +85,5 @@ sendMsg(header+bodyByte)
 # headerTyeCd : A1
 # bodyLenArr : -48, 1, 0, 0
 # bodyLen : 464
+
+#GST-ZIUM-000TAG002

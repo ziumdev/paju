@@ -1,8 +1,8 @@
-mrsHost = '127.0.0.1'
+mrsHost = '192.168.0.102'
 mrsPort = 9202 # MRS port : 9102, ERS port : 9202, simulater port : 8888
 
 mrsClientCd = 'BPA'
-mrsSiteCd = 'PA1'
+mrsSiteCd = '113'
 sendSystemCd = 'SIM'
 headerTypeCd = '001'
 
