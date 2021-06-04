@@ -4,7 +4,7 @@ import json, uuid, time
 
 
 def sendData(topic, payload, qos):
-    mqttConfig.mqClient.publish(topic=topic, payload=json.dumps(payload), qos=qos)
+    mqttConfig.mqClient.publish(topic=topic, payload=str(payload), qos=qos)
 
 
 def getData(oids):
@@ -34,7 +34,7 @@ def getData(oids):
                     for varBind in varBinds:  # SNMP response contents
                         # data[str(varBind).split('=')[0]] = str(varBind).split('=')[1]
                         data['pc']['m2m:cin']['con'] = str(varBind).split('=')[1]
-                        sendData(mqttConfig.mqttTopic, str(data), 0)
+                        sendData(mqttConfig.mqttTopic, json.loads(data), 0)
                         print(json.dumps(data))
                         # print("success")
                 elif 9 <= int(oid.split(snmpConfig.oidDefault)[1]) <= 24:
@@ -44,7 +44,7 @@ def getData(oids):
                             data['pc']['m2m:cin']['con'] = float(str(varBind).split('=')[1]) / 100
                             unit = 'ppm'
                             data['to'] += unit
-                            sendData(mqttConfig.mqttTopic, str(data), 0)
+                            sendData(mqttConfig.mqttTopic, json.loads(data), 0)
                             print(json.dumps(data))
                             data['to'] = data['to'][:-unit.__len__()]
                             # print("success")
@@ -59,7 +59,7 @@ def getData(oids):
                                 data['pc']['m2m:cin']['con'] = float(str(varBind).split('=')[1]) / 100
                                 unit = 'Hz'
                                 data['to'] += unit
-                                sendData(mqttConfig.mqttTopic, str(data), 0)
+                                sendData(mqttConfig.mqttTopic, json.loads(data), 0)
                                 print(json.dumps(data))
                                 data['to'] = data['to'][:-unit.__len__()]
                                 # print("success")
@@ -72,7 +72,7 @@ def getData(oids):
                                 data['pc']['m2m:cin']['con'] = float(str(varBind).split('=')[1]) / 100
                                 unit = 'Vac'
                                 data['to'] += unit
-                                sendData(mqttConfig.mqttTopic, str(data), 0)
+                                sendData(mqttConfig.mqttTopic, json.loads(data), 0)
                                 print(json.dumps(data))
                                 data['to'] = data['to'][:-unit.__len__()]
                                 # print("success")
@@ -85,7 +85,7 @@ def getData(oids):
                                 data['pc']['m2m:cin']['con'] = float(str(varBind).split('=')[1]) / 100
                                 unit = 'A'
                                 data['to'] += unit
-                                sendData(mqttConfig.mqttTopic, str(data), 0)
+                                sendData(mqttConfig.mqttTopic, json.loads(data), 0)
                                 print(json.dumps(data))
                                 data['to'] = data['to'][:-unit.__len__()]
                                 # print("success")
@@ -97,7 +97,7 @@ def getData(oids):
                                 data['pc']['m2m:cin']['con'] = float(str(varBind).split('=')[1]) / 100
                                 unit = 'PF'
                                 data['to'] += unit
-                                sendData(mqttConfig.mqttTopic, str(data), 0)
+                                sendData(mqttConfig.mqttTopic, json.loads(data), 0)
                                 print(json.dumps(data))
                                 data['to'] = data['to'][:-unit.__len__()]
                                 # print("success")
@@ -110,7 +110,7 @@ def getData(oids):
                                 data['pc']['m2m:cin']['con'] = float(str(varBind).split('=')[1]) / 100
                                 unit = 'kW'
                                 data['to'] += unit
-                                sendData(mqttConfig.mqttTopic, str(data), 0)
+                                sendData(mqttConfig.mqttTopic, json.loads(data), 0)
                                 print(json.dumps(data))
                                 data['to'] = data['to'][:-unit.__len__()]
                                 # print("success")
@@ -123,7 +123,7 @@ def getData(oids):
                                 data['pc']['m2m:cin']['con'] = float(str(varBind).split('=')[1]) / 100
                                 unit = 'KVar'
                                 data['to'] += unit
-                                sendData(mqttConfig.mqttTopic, str(data), 0)
+                                sendData(mqttConfig.mqttTopic, json.loads(data), 0)
                                 print(json.dumps(data))
                                 data['to'] = data['to'][:-unit.__len__()]
                                 # print("success")
@@ -136,7 +136,7 @@ def getData(oids):
                                 data['pc']['m2m:cin']['con'] = float(str(varBind).split('=')[1]) / 100
                                 unit = 'kWh'
                                 data['to'] += unit
-                                sendData(mqttConfig.mqttTopic, str(data), 0)
+                                sendData(mqttConfig.mqttTopic, json.loads(data), 0)
                                 print(json.dumps(data))
                                 data['to'] = data['to'][:-unit.__len__()]
                                 # print("success")
@@ -149,7 +149,7 @@ def getData(oids):
                                 data['pc']['m2m:cin']['con'] = float(str(varBind).split('=')[1]) / 100
                                 unit = 'kVarh'
                                 data['to'] += unit
-                                sendData(mqttConfig.mqttTopic, str(data), 0)
+                                sendData(mqttConfig.mqttTopic, json.loads(data), 0)
                                 print(json.dumps(data))
                                 data['to'] = data['to'][:-unit.__len__()]
                                 # print("success")

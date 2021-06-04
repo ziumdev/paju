@@ -5,8 +5,8 @@ from Config import mrsConfig, snmpConfig
 import logging
 import socket, json, datetime, struct
 
-mrsHost = mrsConfig.mrsHost
-mrsPort = mrsConfig.mrsPort
+mrsHost = mrsConfig.ersHost
+mrsPort = mrsConfig.ersPort
 
 snmpEngine = engine.SnmpEngine()
 
@@ -89,14 +89,13 @@ def cbFun(snmpEngine, stateReference, contextEngineId, contextName, varBinds, cb
 
 
 def sendToErs(jsonData):
-    today = datetime.datetime.now().today()
     currentDateTimeString = datetime.datetime.today().strftime('%Y%m%d%H%M%S%f')[:-3]
     headerA = mrsConfig.mrsClientCd + '     ' + mrsConfig.mrsSiteCd + 'A1' + '      ' + mrsConfig.sendSystemCd + " "
     headerB = mrsConfig.headerTypeCd + mrsConfig.traceId + currentDateTimeString
     # jsonData = mrsConfig.bodyJson
     # jsonData['StatEvet']['outbPosNm'] = 'scold'
     # jsonData['StatEvet']['statEvetGdCd'] = '가스탐지기A'
-    # jsonData['StatEvet']['statEvetClrDtm'] = currentDateTimeString
+    jsonData['StatEvet']['statEvetOutbDtm'] = currentDateTimeString
 
     bodyByte = json.dumps(jsonData).encode('utf-8') # Json 값을 byte로 변경
     # bodyByte = marshal.dumps(bodyJson)

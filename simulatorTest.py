@@ -6,7 +6,7 @@ import numpy
 # mrsPort = mrsConfig.mrsPort
 
 mrsHost = 'localhost'
-mrsPort = 9101
+mrsPort = 9201
 
 
 def sendMsg(msg):
@@ -44,10 +44,10 @@ headerB = mrsConfig.headerTypeCd + mrsConfig.traceId + currentDateTimeString
 bodyJson = {
   "StatEvet":{
     "uSvcOutbId" : "GST-ZIUM-000TAG002",
-    "statEvetId" : "GST-ZIUM-000TAG002E01",
+    "statEvetId" : "SMT-PA1-000TAG004E01",
     "statEvetNm" : "영상장치",
     "statEvetGdCd" : "99",    # trap의 경보발생레벨의 값에 0를 붙일것.
-    "procSt" : "2", # 1이 아닌 다른 메시지로..
+    "procSt" : "1", # 1이 아닌 다른 메시지로..
     "outbPosCnt" : 0,
     "outbPosNm" : "취사장 옆 자재 창고",
     "statEvetCntn" : "일산화탄소 가스 농도 초과",
@@ -79,6 +79,7 @@ sendMsg(header+bodyByte)
 # headerArr : [66, 80, 65, 32, 32, 32, 32, 32, 80, 65, 49, 65, 49, 32, 32, 32, 32, 32, 32, 83, 73, 77, 32, -48, 1, 0, 0, 48, 48, 49, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 50, 48, 50, 49, 48, 53, 50, 49, 49, 52, 50, 49, 49, 56, 53, 51, 51]
 # mine :      [66, 80, 65, 32, 32, 32, 32, 32, 32, 80, 65, 49, 65, 49, 32, 32, 32, 32, 32, 32, 83, 73, 77, 32, 28, 2, 0, 0, 48, 48, 49, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 50, 48, 50, 49, 48, 53, 50, 49, 49, 52, 51, 49, 53, 55, 54, 49]
 
+# headerTypeCdByte : 65, 49
 # headerTypeCdByte : 65, 49
 # mine : 49, 65
 
