@@ -10,7 +10,7 @@ fireSensorA = {
             'dataDescription': '연기감지',
             'objectId': oidDefault + '1',
             'scale': 1,
-            'unit': None
+            'unit': ''
         }
     ]
 }
@@ -24,7 +24,7 @@ fireSensorB = {
             'dataDescription': '연기감지',
             'objectId': oidDefault + '2',
             'scale': 1,
-            'unit': None
+            'unit': ''
         }
     ]
 }
@@ -38,7 +38,7 @@ fireSensorC = {
             'dataDescription': '열감지',
             'objectId': oidDefault + '3',
             'scale': 1,
-            'unit': None
+            'unit': ''
         }
     ]
 }
@@ -52,7 +52,7 @@ fireSensorD = {
             'dataDescription': '열감지',
             'objectId': oidDefault + '4',
             'scale': 1,
-            'unit': None
+            'unit': ''
         }
     ]
 }
@@ -329,7 +329,7 @@ multimeterA = {
             'dataDescription': '경보',
             'objectId': oidDefault + '42',
             'scale': 1,
-            'unit': None
+            'unit': ''
         },
     ]
 }
@@ -462,7 +462,7 @@ multimeterB = {
             'dataDescription': '경보',
             'objectId': oidDefault + '60',
             'scale': 1,
-            'unit': None
+            'unit': ''
         },
     ]
 }
@@ -595,7 +595,7 @@ multimeterC = {
             'dataDescription': '경보',
             'objectId': oidDefault + '78',
             'scale': 1,
-            'unit': None
+            'unit': ''
         },
     ]
 }
@@ -728,7 +728,7 @@ multimeterD = {
             'dataDescription': '경보',
             'objectId': oidDefault + '96',
             'scale': 1,
-            'unit': None
+            'unit': ''
         },
     ]
 }

@@ -1,6 +1,17 @@
 snmpHost = '127.0.0.1'
 snmpPort = 161
 
+data = {
+    'to': '/iotCore/AEe2c8236c-7d26-48d2-9cc7-29e79129c811/',
+    'fr': 'SiotTestAE',
+    'rqi': '',
+    'pc': {'m2m:cin': {'con': 0.0}},
+    'op': 1,
+    'ty': 4,
+    'sec': 0
+}
+
+
 # gasSensorA_Id = ''
 # gasSensorB_Id = ''
 # gasSensorC_Id = ''

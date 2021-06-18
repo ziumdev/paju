@@ -1,19 +1,9 @@
 from pysnmp.hlapi import *
-from Config import mqttConfig, snmpConfig
+from Config import mqttConfig, snmpConfig, snmpModelInfo
 import json, uuid, time
-import modelInfo
 
 
 def getSensorData(sensorList):
-    data = {
-        'to': '/iotCore/AEe2c8236c-7d26-48d2-9cc7-29e79129c811/',
-        'fr': 'SiotTestAE',
-        'rqi': str(uuid.uuid4()),
-        'pc': {'m2m:cin': {'con': 0.0}},
-        'op': 1,
-        'ty': 4,
-        'sec': 0
-    }
     for sensor in sensorList:
         for dataObject in sensor['dataObject']:
             iterator = getCmd(SnmpEngine(), CommunityData('public'), UdpTransportTarget((snmpConfig.snmpHost, snmpConfig.snmpPort)), ContextData(),
@@ -28,12 +18,13 @@ def getSensorData(sensorList):
                 else:
                     for varBind in varBinds:
                         try:
-                            data['pc']['m2m:cin']['con'] = float(str(varBind).split('=')[1]) / dataObject['scale']
+                            sensorData = snmpConfig.data
+                            sensorData['rqi'] = str(uuid.uuid4())
+                            sensorData['pc']['m2m:cin']['con'] = float(str(varBind).split('=')[1]) / dataObject['scale']
                             unit = dataObject['unit']
-                            data['to'] += unit
-                            sendData(mqttConfig.mqttTopic, json.loads(data), 0)
-                            print(json.dumps(data))
-                            data['to'] = data['to'][:-unit.__len__()]
+                            sensorData['to'] += unit
+                            sendData(mqttConfig.mqttTopic, json.loads(sensorData), 0)
+                            print(json.dumps(sensorData))
                             print("success")
                         except ValueError as e:
                             print(e)
@@ -46,7 +37,5 @@ def sendData(topic, payload, qos):
 
 def loop():
     while True:
-        getSensorData(modelInfo.sensorList)
-        # for list in snmpConfig.oidList:
-        #     getData(list)
+        getSensorData(snmpModelInfo.sensorList)
         time.sleep(snmpConfig.intveral)
