@@ -1,8 +1,24 @@
 snmpHost = '127.0.0.1'
 snmpPort = 161
 
-oidDefault = "1.3.6.1.4.1.30960.2.1.5.1.1.9."
 
+gasSensorA_Id = ''
+gasSensorB_Id = ''
+gasSensorC_Id = ''
+gasSensorD_Id = ''
+multimeter_A_Id = ''
+multimeter_B_Id = ''
+multimeter_C_Id = ''
+multimeter_D_Id = ''
+
+tagCO = {
+    'ID' : '',
+    'scale': 100,
+    
+}
+
+# 아래부분은 수정 불필요
+oidDefault = "1.3.6.1.4.1.30960.2.1.5.1.1.9."
 flameSensorList = []
 gasSensorList = []
 multimeter_A_sensorList = []
