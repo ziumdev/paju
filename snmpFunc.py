@@ -9,7 +9,7 @@ def getSensorData(sensorList):
         'to': '/iotCore/AEe2c8236c-7d26-48d2-9cc7-29e79129c811/',
         'fr': 'SiotTestAE',
         'rqi': str(uuid.uuid4()),
-        'pc': {"m2m:cin": {"con": 0.0}},
+        'pc': {'m2m:cin': {'con': 0.0}},
         'op': 1,
         'ty': 4,
         'sec': 0
