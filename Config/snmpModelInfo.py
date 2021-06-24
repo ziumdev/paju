@@ -2,6 +2,7 @@ oidDefault = "1.3.6.1.4.1.30960.2.1.5.1.1.9."
 # 화재센서
 fireSensorA = {
     'deviceId': 1,
+    'deviceEndPointURI': '/iotCore/AEe2c8236c-7d26-48d2-9cc7-29e79129c811/',
     'modelName': 'IS_FSS',
     'deviceDescription' : '화재센서_급양관',
     'dataObject': [
@@ -16,6 +17,7 @@ fireSensorA = {
 }
 fireSensorB = {
     'deviceId': 2,
+    'deviceEndPointURI': '/iotCore/AEe2c8236c-7d26-48d2-9cc7-29e79129c811/',
     'modelName': 'IS_FSS',
     'deviceDescription' : '화재센서_탄약고',
     'dataObject': [
@@ -30,6 +32,7 @@ fireSensorB = {
 }
 fireSensorC = {
     'deviceId': 3,
+    'deviceEndPointURI': '/iotCore/AEe2c8236c-7d26-48d2-9cc7-29e79129c811/',
     'modelName': 'IS_FSH',
     'deviceDescription': '화재센서_생활관',
     'dataObject': [
@@ -44,6 +47,7 @@ fireSensorC = {
 }
 fireSensorD = {
     'deviceId': 4,
+    'deviceEndPointURI': '/iotCore/AEe2c8236c-7d26-48d2-9cc7-29e79129c811/',
     'modelName': 'IS_FSH',
     'deviceDescription': '화재센서_유류고',
     'dataObject': [
@@ -60,6 +64,7 @@ fireSensorD = {
 # Gas Sensor
 gasSensorA = {
     'deviceId': 1,
+    'deviceEndPointURI': '/iotCore/AEe2c8236c-7d26-48d2-9cc7-29e79129c811/',
     'modelName': 'GAS-DUMMY',
     'deviceDescription': '가스센서_A',
     'dataObject': [
@@ -95,6 +100,7 @@ gasSensorA = {
 }
 gasSensorB = {
     'deviceId': 2,
+    'deviceEndPointURI': '/iotCore/AEe2c8236c-7d26-48d2-9cc7-29e79129c811/',
     'modelName': 'GAS-DUMMY',
     'deviceDescription': '가스센서_B',
     'dataObject': [
@@ -130,6 +136,7 @@ gasSensorB = {
 }
 gasSensorC = {
     'deviceId': 3,
+    'deviceEndPointURI': '/iotCore/AEe2c8236c-7d26-48d2-9cc7-29e79129c811/',
     'modelName': 'GAS-DUMMY',
     'deviceDescription': '가스센서_C',
     'dataObject': [
@@ -165,6 +172,7 @@ gasSensorC = {
 }
 gasSensorD = {
     'deviceId': 4,
+    'deviceEndPointURI': '/iotCore/AEe2c8236c-7d26-48d2-9cc7-29e79129c811/',
     'modelName': 'GAS-DUMMY',
     'deviceDescription': '가스센서_D',
     'dataObject': [
@@ -202,6 +210,7 @@ gasSensorD = {
 # 멀티미터
 multimeterA = {
     'deviceId': 1,
+    'deviceEndPointURI': '/iotCore/AEe2c8236c-7d26-48d2-9cc7-29e79129c811/',
     'modelName': 'MM-DUMMY',
     'deviceDescription': '멀티미터_A',
     'dataObject': [
@@ -335,6 +344,7 @@ multimeterA = {
 }
 multimeterB = {
     'deviceId': 2,
+    'deviceEndPointURI': '/iotCore/AEe2c8236c-7d26-48d2-9cc7-29e79129c811/',
     'modelName': 'MM-DUMMY',
     'deviceDescription': '멀티미터_B',
     'dataObject': [
@@ -468,6 +478,7 @@ multimeterB = {
 }
 multimeterC = {
     'deviceId': 3,
+    'deviceEndPointURI': '/iotCore/AEe2c8236c-7d26-48d2-9cc7-29e79129c811/',
     'modelName': 'MM-DUMMY',
     'deviceDescription': '멀티미터_C',
     'dataObject': [
@@ -601,6 +612,7 @@ multimeterC = {
 }
 multimeterD = {
     'deviceId': 4,
+    'deviceEndPointURI': '/iotCore/AEe2c8236c-7d26-48d2-9cc7-29e79129c811/',
     'modelName': 'MM-DUMMY',
     'deviceDescription': '멀티미터_D',
     'dataObject': [

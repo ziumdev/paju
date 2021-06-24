@@ -2,7 +2,7 @@ snmpHost = '127.0.0.1'
 snmpPort = 161
 
 data = {
-    'to': '/iotCore/AEe2c8236c-7d26-48d2-9cc7-29e79129c811/',
+    'to': '',
     'fr': 'SiotTestAE',
     'rqi': '',
     'pc': {'m2m:cin': {'con': 0.0}},

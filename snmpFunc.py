@@ -19,13 +19,19 @@ def getSensorData(sensorList):
                     for varBind in varBinds:
                         try:
                             sensorData = snmpConfig.data
+                            sensorData['to'] = sensor['deviceEndPointURI']
                             sensorData['rqi'] = str(uuid.uuid4())
                             sensorData['pc']['m2m:cin']['con'] = float(str(varBind).split('=')[1]) / dataObject['scale']
                             unit = dataObject['unit']
                             sensorData['to'] += unit
-                            sendData(mqttConfig.mqttTopic, json.loads(sensorData), 0)
+                            sendData(mqttConfig.mqttTopic, json.dumps(sensorData), 0)
                             print(json.dumps(sensorData))
                             print("success")
+                            if unit is not '':
+                                sensorData['to'] = sensorData['to'][:-unit.__len__()]
+                                pass
+                            elif unit is '':
+                                pass
                         except ValueError as e:
                             print(e)
                             pass
