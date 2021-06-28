@@ -1,7 +1,7 @@
-mrsHost = '192.168.0.103'  # 현재 미사용
+mrsHost = '192.168.11.100'  # 현재 미사용
 mrsPort = 9201  # 현재 미사용
 
-ersHost = '192.168.0.102'
+ersHost = '192.168.11.100'
 ersPort = 9201 # MRS port : 9102, ERS port : 9202, simulater port : 8888
 
 mrsClientCd = 'SMT'

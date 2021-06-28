@@ -1,6 +1,6 @@
 import paho.mqtt.client as mqtt
 
-brkIp = '127.0.0.1'
+brkIp = '192.168.11.100'
 brkPort = 1883
 brkKeepalive = 60
 
