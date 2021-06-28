@@ -1,4 +1,5 @@
 # Project exclude paths
+/Config/
 /venv/
 __pycache__/
 *.py[cod]
