@@ -64,7 +64,7 @@ fireSensorD = {
 # Gas Sensor
 gasSensorA = {
     'deviceId': 1,
-    'deviceEndPointURI': '/iotCore/AEe2c8236c-7d26-48d2-9cc7-29e79129c811/',
+    'deviceEndPointURI': '/iotCore/AE6d232d50-f8cc-47c4-b8a4-9d5ff6aef543/',
     'modelName': 'GAS-DUMMY',
     'deviceDescription': '가스센서_A',
     'dataObject': [
@@ -80,21 +80,21 @@ gasSensorA = {
             'dataDescription': '일산화탄소',
             'objectId': oidDefault + '10',
             'scale': 100,
-            'unit': 'ppm'
+            'unit': 'co'
         },
         {
             'dataId': 3,
             'dataDescription': '산소',
             'objectId': oidDefault + '11',
             'scale': 100,
-            'unit': 'ppm'
+            'unit': 'o2'
         },
         {
             'dataId': 4,
             'dataDescription': '황화수소',
             'objectId': oidDefault + '12',
             'scale': 100,
-            'unit': 'ppm'
+            'unit': 'h2s'
         },
     ]
 }
