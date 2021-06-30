@@ -45,10 +45,6 @@ def changeDict2Bytes(msg):
     encode_data = json.dumps(msg, indent=2).encode('utf-8')
     return encode_data
 
-
-eventCnt
-
-
 def sendMsg(msg):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect((mrsHost, mrsPort))
@@ -101,7 +97,6 @@ def cbFun(snmpEngine, stateReference, contextEngineId, contextName, varBinds, cb
                 logging.info("Received new Trap message")
                 trapFlag = True
         elif name.prettyPrint() == mrsConfig.trapOidList['alarmNum']:
-
             pass
         elif name.prettyPrint() == mrsConfig.trapOidList['alarmLevel']:
             statEvetGdCd = val.prettyPrint()
@@ -162,11 +157,12 @@ def sendToErs(jsonData):
     # jsonData['StatEvet']['statEvetGdCd'] = '가스탐지기A'
     jsonData['StatEvet']['statEvetOutbDtm'] = currentDateTimeString
 
-    bodyByte = json.dumps(jsonData).encode('utf-8')  # Json 값을 byte로 변경
+    bodyByte = json.dumps(jsonData, ensure_ascii=False).encode('utf-8')  # Json 값을 byte로 변경
     # bodyByte = marshal.dumps(bodyJson)
     bodyLength = struct.pack('<I', bodyByte.__len__())
     header = headerA.encode('utf-8').__add__(bodyLength).__add__(headerB.encode('utf-8'))
-    sendMsg(header + bodyByte)
+    msg = header + bodyByte
+    sendMsg(msg.decode())
 
 
 def run():

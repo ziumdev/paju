@@ -12,42 +12,42 @@ headerTypeCd = '001'
 space = ' ' * 10
 traceId = '                        '
 
-# bodyJson = {
-#   "StatEvet":{
-#     "uSvcOutbId": "GST-ZIUM-000TAG002",
-#     # "statEvetId": "GST-ZIUM-000TAG002E01",
-#     "statEvetId": "SMT-PA1-000TAG004E01",
-#     "statEvetNm": "영상장치",
-#     "statEvetGdCd": "04",    # trap의 경보발생레벨의 값에 0를 붙일것.
-#     "procSt": "2",  # 1이 아닌 다른 메시지로..
-#     "outbPosCnt" : 0,
-#     "outbPosNm": "취사장 옆 자재 창고",
-#     "statEvetCntn": "일산화탄소 가스 농도 초과",
-#     "statEvetOutbDtm": "",
-#     "statEvetItemCnt": 1,
-#     "statEvetItem": [{"key": "DATA",  "value": "co"}],
-#     "cpxRelEvetOutbSeqnCnt" : 0
-#   }
-# }
-
 bodyJson = {
   "StatEvet":{
-    "uSvcOutbId": " ",
-    "statEvetId": " ",
-    "statEvetNm": " ",
-    "statEvetGdCd": " ",    # trap의 경보발생레벨의 값에 0를 붙일것.
+    "uSvcOutbId": "GST-ZIUM-000TAG002",
+    # "statEvetId": "GST-ZIUM-000TAG002E01",
+    "statEvetId": "SMT-PA1-000TAG004E01",
+    "statEvetNm": "영상장치",
+    "statEvetGdCd": "04",    # trap의 경보발생레벨의 값에 0를 붙일것.
     "procSt": "2",  # 1이 아닌 다른 메시지로..
     "outbPosCnt" : 0,
-    "outbPosNm": " ",
-    "statEvetCntn": " ",
+    "outbPosNm": "취사장 옆 자재 창고",
+    "statEvetCntn": "일산화탄소 가스 농도 초과",
     "statEvetOutbDtm": "",
     "statEvetItemCnt": 1,
-    "statEvetItem": [
-      {"key": "DATA",  "value": "co"}
-    ],
+    "statEvetItem": [{"key": "DATA",  "value": "co"}],
     "cpxRelEvetOutbSeqnCnt" : 0
   }
 }
+
+# bodyJson = {
+#   "StatEvet":{
+#     "uSvcOutbId": " ",
+#     "statEvetId": " ",
+#     "statEvetNm": " ",
+#     "statEvetGdCd": " ",    # trap의 경보발생레벨의 값에 0를 붙일것.
+#     "procSt": "2",  # 1이 아닌 다른 메시지로..
+#     "outbPosCnt" : 0,
+#     "outbPosNm": " ",
+#     "statEvetCntn": " ",
+#     "statEvetOutbDtm": "",
+#     "statEvetItemCnt": 1,
+#     "statEvetItem": [
+#       {"key": "DATA",  "value": "co"}
+#     ],
+#     "cpxRelEvetOutbSeqnCnt" : 0
+#   }
+# }
 
 
 trapOidList = {
